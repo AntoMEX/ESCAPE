@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325722551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 888487089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0561, z: 0}
+  m_LocalPosition: {x: 0.722, y: 0.249, z: 0}
   m_LocalScale: {x: 0.01, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -587,8 +587,10 @@ MonoBehaviour:
   damping: 0.5
   rotFrecuency: 100
   rotDamping: 0.9
-  playerRigidBody: {fileID: 0}
-  target: {fileID: 0}
+  playerRigidBody: {fileID: 2052025141}
+  target: {fileID: 1407172630}
+  climbingForce: 1000
+  climbDragForce: 500
 --- !u!54 &888487092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -623,7 +625,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888487089}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 926ca3bd857841d4f8f22624b7d175c9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -757,7 +759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1407172630}
   - component: {fileID: 1407172631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1574121574}
   - component: {fileID: 1574121575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1045,8 @@ GameObject:
   - component: {fileID: 1673299808}
   - component: {fileID: 1673299807}
   - component: {fileID: 1673299810}
-  m_Layer: 0
+  - component: {fileID: 1673299811}
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1277,6 +1280,29 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!136 &1673299811
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673299805}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 0.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1921667850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1375,8 @@ GameObject:
   - component: {fileID: 2052025140}
   - component: {fileID: 2052025139}
   - component: {fileID: 2052025138}
-  m_Layer: 0
+  - component: {fileID: 2052025141}
+  m_Layer: 8
   m_Name: XR Origin (VR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,13 +1423,40 @@ Transform:
   m_GameObject: {fileID: 2052025137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14208737, y: 0.2980657, z: -0.97410464}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 325722551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2052025141
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052025137}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 2
 --- !u!1 &2053127688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1487,7 @@ Transform:
   m_GameObject: {fileID: 2053127688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0757, y: 0.0561, z: 0}
+  m_LocalPosition: {x: -0.0757, y: 0.238, z: 0}
   m_LocalScale: {x: 0.01, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1455,8 +1509,10 @@ MonoBehaviour:
   damping: 0.5
   rotFrecuency: 100
   rotDamping: 0.9
-  playerRigidBody: {fileID: 0}
-  target: {fileID: 0}
+  playerRigidBody: {fileID: 2052025141}
+  target: {fileID: 1574121574}
+  climbingForce: 1000
+  climbDragForce: 500
 --- !u!54 &2053127691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1491,7 +1547,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053127688}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 926ca3bd857841d4f8f22624b7d175c9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

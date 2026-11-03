@@ -11,16 +11,26 @@ public class PhysicsHand : MonoBehaviour
     [SerializeField] private Rigidbody playerRigidBody;
     private Rigidbody _rigidbody;
     [SerializeField] private Transform target;
+    [Space]
+    [Header("HookesLaw")]
+    [SerializeField] float climbingForce = 1000f;
+    [SerializeField] float climbDragForce = 500f;
+    Vector3 _previousPosition;
+    bool isColliding = false;
     void Start()
     {
+        transform.position = target.position;
+        transform.rotation = target.rotation;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.maxAngularVelocity = float.PositiveInfinity;
+        _previousPosition = transform.position;
     }
 
     void FixedUpdate()
     {
         PIDMovement();
         PIDRotation();
+        if(isColliding) HookesLaw();
     }
 
     void PIDMovement()
@@ -54,5 +64,34 @@ public class PhysicsHand : MonoBehaviour
         axis *= Mathf.Deg2Rad;
         Vector3 torque = ksg * axis * angle + -_rigidbody.angularVelocity * kdg;
         _rigidbody.AddTorque(torque, ForceMode.Acceleration);
+    }
+
+    void HookesLaw()
+    {
+        Vector3 displaysmentFromResting = transform.position - target.position;
+        Vector3 force = displaysmentFromResting * climbingForce;
+        float drag = GetDrag();
+
+        playerRigidBody.AddForce(force, ForceMode.Acceleration);
+        playerRigidBody.AddForce(drag * -playerRigidBody.linearVelocity * climbDragForce, ForceMode.Acceleration);
+    }
+
+    float GetDrag()
+    {
+        Vector3 handVelocity = (target.localPosition - _previousPosition) / Time.fixedDeltaTime;
+        float drag = 1 /handVelocity.magnitude + 0.01f;
+        drag = drag > 1 ? 1 : drag;
+        drag = drag < 0.03f ? 0.03f : drag;
+        _previousPosition = transform.position;
+        return drag;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isColliding = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        isColliding = false;
     }
 }
