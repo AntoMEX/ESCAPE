@@ -6,7 +6,7 @@ public class HMDInfoManager : MonoBehaviour
     void Start()
     {
         if (!XRSettings.isDeviceActive)
-            Debug.Log("No headswt plugged");
+            Debug.Log("No headset plugged");
         else if (XRSettings.isDeviceActive && (XRSettings.loadedDeviceName == "Mock HMD" || XRSettings.loadedDeviceName == "MockHMDDisplay"))
             Debug.Log("Mock HMD plugged");
         else
