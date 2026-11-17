@@ -4,10 +4,25 @@ public abstract class InteractableObject : MonoBehaviour
 {
     bool grabed = false;
 
-    public void SetGrabbed(bool value)
+    public void OnGrabbed()
     {
-        grabed = value;
+        grabed = true;
+        gameObject.layer = LayerMask.NameToLayer("Player"); 
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Player");
+        }
     }
+    public void OnReleased()
+    {
+        grabed = false;
+        gameObject.layer = LayerMask.NameToLayer("Default"); 
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
+
 
     public virtual void DoAction() { }
 }
