@@ -32,4 +32,6 @@ public class HealthComponent : MonoBehaviour
         else
             OnRecibeDamage.Invoke();
     }
+
+    public void UpdateHP(float amount) { }
 }
