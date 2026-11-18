@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -6,14 +7,32 @@ public class Gun : InteractableObject
     [SerializeField] private float shootCooldown;
     private float lastShotTime = 0f;
     [SerializeField] private int ammo;
+    [SerializeField] private TMP_Text ammoText;
     [SerializeField] private Transform muzzle;
     [SerializeField] private float range;
     [SerializeField] private float dmg;
+
+    private void Start()
+    {
+        UpdateAmmoUI();
+    }
+
+    private void UpdateAmmoUI()
+    {
+        if (ammoText != null)
+        {
+            ammoText.text = ammo.ToString();
+        }
+    }
+
     public virtual void Shoot()
     {
         if (ammo > 0 && lastShotTime + shootCooldown < Time.time) //Si hay balas y ha pasado el cooldown
         {
             ammo--;
+
+            UpdateAmmoUI();
+
             lastShotTime = Time.time;
             //Disparar
             Debug.Log("Pew Pew");

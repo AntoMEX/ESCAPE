@@ -18778,10 +18778,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestGun
       objectReference: {fileID: 0}
+    - target: {fileID: 3782057583010185552, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3987722436513171529, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
 --- !u!1001 &809155337852496227
 PrefabInstance:
