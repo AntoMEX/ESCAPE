@@ -13,7 +13,7 @@ public class Gun : InteractableObject
 
     [SerializeField] private Transform muzzle;
     [SerializeField] private float range;
-    [SerializeField] private float dmg;
+    [SerializeField] private int dmg;
 
     private void Start()
     {
@@ -45,7 +45,7 @@ public class Gun : InteractableObject
                 Debug.Log("Hit: " + hit.collider.name);
                 if(hit.collider.TryGetComponent(out HealthComponent healthComp))
                 {
-                    healthComp.UpdateHP(-dmg);
+                    healthComp.RecibeDamage(dmg);
                 }
             }
         }

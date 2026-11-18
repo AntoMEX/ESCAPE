@@ -6,9 +6,10 @@ public class PlayerHealthManager : HealthComponent
 {
     [Header("Healing")]
     public UnityEvent OnHeal;
-    [SerializeField] private float timeToStartHeal = 2f;
-    [SerializeField] private float timeBetweenHeals = 1f;
-    [SerializeField] private int healAmount = 5;
+    public UnityEvent OnStartHealing;
+    [SerializeField] private float timeToStartHeal = 2.5f;
+    [SerializeField] private float timeBetweenHeals = 0.15f;
+    [SerializeField] private int healAmount = 10;
 
     bool healRutineActive = false;
     Coroutine healRutine;
@@ -39,7 +40,7 @@ public class PlayerHealthManager : HealthComponent
     {
         healRutineActive = true;
         yield return new WaitForSeconds(timeToStartHeal);
-
+        OnStartHealing.Invoke();
         while (CURHP < MAXHP)
         {
             yield return new WaitForSeconds(timeBetweenHeals);
