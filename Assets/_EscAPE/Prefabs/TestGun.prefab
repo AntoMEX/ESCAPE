@@ -415,6 +415,7 @@ MonoBehaviour:
   shootCooldown: 0.2
   ammo: 30
   ammoText: {fileID: 7914592853945312369}
+  ammoDisplay: {fileID: 6307659562421228464}
   muzzle: {fileID: 8660782391161219063}
   range: 0
   dmg: 0

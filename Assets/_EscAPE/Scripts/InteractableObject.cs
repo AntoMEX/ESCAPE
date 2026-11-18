@@ -4,7 +4,7 @@ public abstract class InteractableObject : MonoBehaviour
 {
     bool grabed = false;
 
-    public void OnGrabbed()
+    public virtual void OnGrabbed()
     {
         grabed = true;
         gameObject.layer = LayerMask.NameToLayer("Player"); 
@@ -13,7 +13,7 @@ public abstract class InteractableObject : MonoBehaviour
             child.gameObject.layer = LayerMask.NameToLayer("Player");
         }
     }
-    public void OnReleased()
+    public virtual void OnReleased()
     {
         grabed = false;
         gameObject.layer = LayerMask.NameToLayer("Default"); 
