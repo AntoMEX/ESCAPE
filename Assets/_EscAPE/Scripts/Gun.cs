@@ -6,14 +6,18 @@ public class Gun : InteractableObject
 {
     [SerializeField] private float shootCooldown;
     private float lastShotTime = 0f;
+
     [SerializeField] private int ammo;
     [SerializeField] private TMP_Text ammoText;
+    [SerializeField] private GameObject ammoDisplay;
+
     [SerializeField] private Transform muzzle;
     [SerializeField] private float range;
     [SerializeField] private float dmg;
 
     private void Start()
     {
+        ammoDisplay.SetActive(false);
         UpdateAmmoUI();
     }
 
@@ -46,5 +50,18 @@ public class Gun : InteractableObject
             }
         }
     }
+
+    public override void OnGrabbed()
+    {
+        base.OnGrabbed();
+        ammoDisplay.SetActive(true);
+    }
+
+    public override void OnReleased()
+    {
+        base.OnReleased();
+        ammoDisplay.SetActive(false);
+    }
+
 }
 
