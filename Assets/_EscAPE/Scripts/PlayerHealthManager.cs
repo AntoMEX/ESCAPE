@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerHealthManager : HealthComponent
 {
@@ -13,10 +14,25 @@ public class PlayerHealthManager : HealthComponent
 
     bool healRutineActive = false;
     Coroutine healRutine;
+
+    [SerializeField] const bool DEBUG_LIFE = true;
     protected override void Start()
     {
         base.Start();
         OnRecibeDamage.AddListener(RestartHealing);
+        if (DEBUG_LIFE) OnRecibeDamage.AddListener(DamageDebug);
+    }
+
+    private void Update()
+    {
+        if (DEBUG_LIFE)
+        {
+            if (Keyboard.current.lKey.wasPressedThisFrame)
+            {
+                Debug.Log("DETECTO INPUT");
+                RecibeDamage(10);
+            }
+        }
     }
     void RestartHealing()
     {
@@ -33,6 +49,7 @@ public class PlayerHealthManager : HealthComponent
         m_curHP += _healAmount;
         if (m_curHP > m_maxHP)
             m_curHP = m_maxHP;
+        if (DEBUG_LIFE) Debug.Log("Healeed to: " + CURHP.ToString());
         OnHeal.Invoke();
     }
 
@@ -47,5 +64,10 @@ public class PlayerHealthManager : HealthComponent
             Heal(healAmount);
         }
         healRutineActive = false;
+    }
+
+    public void DamageDebug()
+    {
+        Debug.Log("Life at: " + CURHP.ToString());
     }
 }

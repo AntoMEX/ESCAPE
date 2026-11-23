@@ -3,18 +3,18 @@ using UnityEngine.Events;
 
 public class HealthComponent : MonoBehaviour
 {
-    public int MAXHP => m_maxHP;
-    protected int m_maxHP;
-    public int CURHP => m_curHP;
-    protected int m_curHP;
+    public float MAXHP => m_maxHP;
+    protected float m_maxHP;
+    public float CURHP => m_curHP;
+    protected float m_curHP;
 
     public UnityEvent OnRecibeDamage;
     public UnityEvent OnDeath;
     protected virtual void Start()
     {
-        if (m_maxHP <= 0)
+        if (m_maxHP <= 0f)
         {
-            m_maxHP = 100;
+            m_maxHP = 100f;
         }
         if (m_curHP != m_maxHP)
         {
@@ -22,15 +22,14 @@ public class HealthComponent : MonoBehaviour
         }
     } 
 
-    public void RecibeDamage(int amount)
+    public void RecibeDamage(float amount)
     {
         m_curHP -= amount;
-        if (m_curHP <= 0){
-            m_curHP = 0;
+        if (m_curHP <= 0f){
+            m_curHP = 0f;
             OnDeath.Invoke();
         }
         else
             OnRecibeDamage.Invoke();
     }
-
 }

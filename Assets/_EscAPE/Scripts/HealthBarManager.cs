@@ -36,10 +36,10 @@ public class HealthBarManager : MonoBehaviour
     {
         if(fadeTween != null) fadeTween.Kill();
         
-        starting = vignette.weight;
-        Mathf.Clamp(starting, INITIAL, MAXIMUM);
+        //starting = vignette.weight;
+        //Mathf.Clamp(starting, INITIAL, MAXIMUM);
         
-        final = (starting - ((playerHealth.CURHP / playerHealth.MAXHP)));
+        final = (INITIAL + (1 - (playerHealth.CURHP / playerHealth.MAXHP)));
         Mathf.Clamp(final, INITIAL, MAXIMUM);
         
         fadeTween = DOTween.To(()=> vignette.weight, x => vignette.weight = x, final, lossFadeDuration);
@@ -47,7 +47,7 @@ public class HealthBarManager : MonoBehaviour
 
     public void OnHPGain()
     {
-        if(fadeTween != null) fadeTween.Kill();
+        if (fadeTween != null) fadeTween.Kill();
 
         float duration = (playerHealth.CURHP / playerHealth.MAXHP) * healFadeMultiplier;
 
