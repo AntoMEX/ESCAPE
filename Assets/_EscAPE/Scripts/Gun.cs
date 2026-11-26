@@ -15,6 +15,10 @@ public class Gun : InteractableObject
     [SerializeField] private float range;
     [SerializeField] private int dmg;
 
+    [Header("Debug")]
+    [SerializeField] bool debuggActive = true;
+    public Vector3 impactPoint {  get; private set; }
+    [SerializeField] float pointRad = 0.1f;
     private void Start()
     {
         ammoDisplay.SetActive(false);
@@ -47,6 +51,7 @@ public class Gun : InteractableObject
                 {
                     healthComp.RecibeDamage(dmg);
                 }
+                if(debuggActive) impactPoint = hit.point;
             }
         }
     }
@@ -61,6 +66,21 @@ public class Gun : InteractableObject
     {
         base.OnReleased();
         ammoDisplay.SetActive(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (debuggActive && Grabbed)
+        { 
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(muzzle.position, muzzle.forward * range);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(impactPoint, pointRad);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(muzzle.position, pointRad);
+        }
     }
 
 }

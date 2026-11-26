@@ -428,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 4386515970251382757}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0586, y: 0.129, z: 0.156}
+  m_LocalPosition: {x: 0.0499, y: 0.1341, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -674,6 +674,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 7395db57e5f3c2e4aa44bd20ecee1188, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7395db57e5f3c2e4aa44bd20ecee1188, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 46896cda3c34eed41b17713ee4d6e8b0, type: 2}
@@ -740,8 +744,10 @@ MonoBehaviour:
   ammoText: {fileID: 9169847235061161959}
   ammoDisplay: {fileID: 5889686558143200889}
   muzzle: {fileID: 2756169732085977865}
-  range: 0
-  dmg: 0
+  range: 12
+  dmg: 12
+  debuggActive: 1
+  pointRad: 0.1
 --- !u!54 &1844170728309897022
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -817,8 +823,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InteractableObject, Assembly-CSharp
+      - m_Target: {fileID: 1261097827010691444}
+        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
         m_MethodName: OnGrabbed
         m_Mode: 1
         m_Arguments:
@@ -832,8 +838,8 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InteractableObject, Assembly-CSharp
+      - m_Target: {fileID: 1261097827010691444}
+        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
         m_MethodName: OnReleased
         m_Mode: 1
         m_Arguments:
@@ -859,7 +865,7 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1261097827010691444}
         m_TargetAssemblyTypeName: Gun, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 1

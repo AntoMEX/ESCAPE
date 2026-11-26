@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class InteractableObject : MonoBehaviour
 {
+    public bool Grabbed => grabed;
     bool grabed = false;
 
     public virtual void OnGrabbed()

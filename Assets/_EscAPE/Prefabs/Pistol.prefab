@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2328202948400991649, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
+      propertyPath: dmg
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328202948400991649, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
+      propertyPath: range
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3407810244444094677, guid: 9a4d832ccc9a2fa479987c862fe2e3f5, type: 3}
       propertyPath: m_Name
-      value: TestGun
+      value: Pistol
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
