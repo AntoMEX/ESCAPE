@@ -114,11 +114,13 @@ public class RangedEnemy : AFuzzyEnemy
     }
     public override void OnRecibeDamage()
     {
+        AudioManager.instance.PlaySound(hurtSound);
         EvaluateBehaviour();
     }
     public override void OnDeath()
     {
         alive = false;
+        AudioManager.instance.PlaySound(deathSound);
         StopAllCoroutines();
         Object.Destroy(this.gameObject);
     }

@@ -3,20 +3,25 @@ using UnityEngine.AI;
 
 public abstract class AEnemy : MonoBehaviour
 {
+    [Header("Components reference")]
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Transform player;
     [SerializeField] protected HealthComponent healthComp;
-
-    public Point goal;
     public TacticBehaviour tacticBehaviour;
+    [SerializeField] Animator animator;
 
+    [Header("Values")]
     [SerializeField] protected float patrolSpeed = 2.5f;
     [SerializeField] protected float normalSpeed = 3.5f;
-    [SerializeField] protected bool alive = true;
-    [SerializeField] protected bool attacking = false;
     [SerializeField] protected float attackDelay = 1f;
-    [SerializeField] protected float elapsedAttack = 0f;
+    [SerializeField] protected AudioClip hurtSound;
+    [SerializeField] protected AudioClip deathSound;
 
+    [Header("Debug")]
+    [SerializeField] protected float elapsedAttack = 0f;
+    [SerializeField] protected bool attacking = false;
+    [SerializeField] protected bool alive = true;
+    public Point goal;
     protected virtual void Start()
     {
         if (!healthComp) healthComp = GetComponent<HealthComponent>();

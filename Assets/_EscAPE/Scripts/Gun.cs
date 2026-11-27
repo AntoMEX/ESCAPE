@@ -15,6 +15,8 @@ public class Gun : InteractableObject
     [SerializeField] private float range;
     [SerializeField] private int dmg;
 
+    [SerializeField] private AudioClip shotSound;
+
     [Header("Debug")]
     [SerializeField] bool debuggActive = true;
     public Vector3 impactPoint {  get; private set; }
@@ -44,6 +46,7 @@ public class Gun : InteractableObject
             lastShotTime = Time.time;
             //Disparar
             Debug.Log("Pew Pew");
+            AudioManager.instance.PlaySound(shotSound);
             if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, range))
             {
                 Debug.Log("Hit: " + hit.collider.name);
